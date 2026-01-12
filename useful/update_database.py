@@ -10,7 +10,8 @@ price_datas: str = f'{subdir}{os.sep}setcode_prices.sqlite'
 fresh_databases: str = f'{subdir}{os.sep}fresh_database.zip'
 
 CARD_COLUMNS: set = {'power', 'toughness', 'cmc', 'name', 'type', 'setcode', 'types', 'text', 'artist', 'scryfall_id',
-                     'keywords', 'layout', 'side', 'frame_effects', 'number', 'loyalty', 'rarity', 'mana_cost', 'colors', 'color_identity'}
+                     'keywords', 'layout', 'side', 'frame_effects', 'number', 'loyalty', 'rarity', 'mana_cost',
+                     'colors', 'color_identity'}
 
 SET_COLUMNS: set = {'name', 'releasedate_epoch', 'releasedate_string', 'setcode', 'type'}
 

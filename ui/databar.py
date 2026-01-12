@@ -402,60 +402,15 @@ class ActiveRevBTN(ShadeLabel):
         pixmap = QtGui.QPixmap.fromImage(qim)
         self.background.setPixmap(pixmap)
 
-# class GroupBTN(ActiveRevBTN):
-#     var: str = ''
-#     font_size: int = 11
-#     group: int | None = None
-#     default: bool = False
-#     allow_multiple: bool = True
-#     all_off: bool = True
-#     def __init__(self, master, group: int | None = None, default: bool = False, allow_multiple: bool = False, all_off: bool = True, **kwargs):
-#         self.default : bool = default
-#         self.allow_multiple: bool = allow_multiple
-#         self.all_off: bool = all_off
-#         self.group: int | None = group
-#         self.deckbox = master.master.deckbox
-#         self.deck = master.master.deckbox.deck
-#         self.buttons: list = master.buttons
-#         super().__init__(master, adjustable_fontsize=False, **kwargs)
-#         self.buttons.append(self)
-#         setting: tuple | None = self.deck.get(self.var, None)
-#         if setting is not None:
-#             self.active, self.reversed = setting
-#
-#
-#     def mouseReleaseEvent(self, ev):
-#         toggle: bool = True
-#         if self.group in [self.master.cardmarket_out.group]:
-#             pre_rev: bool = self.reversed
-#             self.reversed: bool = ev.button().value not in [1]
-#             if self.active and pre_rev != self.reversed:
-#                 toggle = False
-#
-#         self.toggle_btn(toggle=toggle)
-#
-#     def toggle_btn(self, toggle: bool = True):
-#         self.active: bool = not self.active if toggle else self.active
-#         if not self.all_off and not self.active:
-#             self.active = True
-#
-#         if self.group is not None and not self.allow_multiple:
-#             for btn in [btn for btn in self.buttons if btn.group == self.group and btn.active and btn != self]:
-#                 btn.active = False
-#                 self.deck[btn.var]: tuple = btn.active, btn.reversed,
-#                 btn.draw_background_idle()
-#
-#         self.deck[self.var]: tuple = self.active, self.reversed,
-#         self.draw_background_hover() if self.active else self.draw_background_idle()
 
 class SortBTN(ActiveRevBTN):
-    def __init__(self, master, var: str, **kwargs):
+    def __init__(self, master, var: str, adjustable_fontsize: bool = False, **kwargs):
         master.sort_btns.append(self)
         self.main = master.main
         self.databar = master.databar
         self.searchbox = master.searchbox
         self.var: str = var
-        super().__init__(master, adjustable_fontsize=False, **kwargs)
+        super().__init__(master, adjustable_fontsize=adjustable_fontsize, **kwargs)
         self.setStyleSheet('background:transparent;color:rgb(200,200,200);font:12px')
         self.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 

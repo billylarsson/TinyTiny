@@ -134,7 +134,8 @@ class Worker(QObject):
                     eof: bool = chunk == b''
                     fakefile.write(chunk) if not eof else ...
         finally:
-            return fakefile if eof else None
+            ...
+        return fakefile if eof else None
 
 
     def get_base_url(self) -> str:

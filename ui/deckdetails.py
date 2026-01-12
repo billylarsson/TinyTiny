@@ -15,8 +15,8 @@ from useful.tech      import add, add_rgb, shrinking_rect, sub, sub_rgb
 
 
 class RollDownSortBTN(SortBTN):
-    def __init__(self, master, *args, **kwargs):
-        super().__init__(master, adjustable_fontsize=False, *args, **kwargs)
+    def __init__(self, master, adjustable_fontsize: bool = False, *args, **kwargs):
+        super().__init__(master, adjustable_fontsize=adjustable_fontsize, *args, **kwargs)
         self.alter_stylesheet(key='font', val='10px')
 
     def mouseReleaseEvent(self, ev):
@@ -200,8 +200,9 @@ class RollDownDataBar(Label):
                     rolldown.databar.rolldown_sorter.close()
                 finally:
                     rolldown.databar.rolldown_sorter = None
-                    if rolldown == self.rolldown:
-                        return
+
+                if rolldown == self.rolldown:
+                    return
 
         self.rolldown_sorter = RollDownSorters(self.main, self.rolldown)
         self.rolldown_sorter.show()
@@ -715,10 +716,10 @@ class DeckDetailsBTN(ActiveRevBTN):
                 showbox.deckdetails.close()
             finally:
                 showbox.deckdetails = None
-                return
         else:
             showbox.deckdetails = DeckDetails(showbox.main, showbox=showbox)
             showbox.deckdetails.update_fidgets()
             showbox.deckdetails.show()
 
-        self.draw_background_hover()
+        if showbox.importer_exporter is not None:
+            self.draw_background_hover()

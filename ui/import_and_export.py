@@ -899,10 +899,10 @@ class ImportExportBTN(ActiveRevBTN):
                 showbox.importer_exporter.close()
             finally:
                 showbox.importer_exporter = None
-                return
         else:
             showbox.importer_exporter = ImportExport(showbox.main, deckbox=showbox)
             showbox.importer_exporter.export_deck()
             showbox.importer_exporter.show()
 
-        self.draw_background_hover()
+        if showbox.importer_exporter is not None:
+            self.draw_background_hover()
